@@ -37,13 +37,13 @@ matched_universities_df['university_match'] = matched_universities_df['descripti
 final_universities_df = matched_universities_df.drop_duplicates(subset=['university_match'])
 
 # Add a rank column
-final_universities_df['Rank'] = range(1, len(final_universities_df) + 1)
+final_universities_df['rank'] = range(1, len(final_universities_df) + 1)
 
 # Create a hyperlink for each ASN to Cloudflare Radar
 final_universities_df['asn'] = final_universities_df['asn'].apply(lambda x: f'<a href="https://radar.cloudflare.com/as{x}">{x}</a>')
 
-# Select only the needed columns and reorder them (Rank, Description, ASN, Handle)
-final_df = final_universities_df[['Rank', 'description', 'asn', 'handle']]
+# Select only the needed columns and reorder them (rank, Description, ASN, Handle)
+final_df = final_universities_df[['rank', 'description', 'asn', 'handle']]
 
 # Generate HTML table with ASN hyperlinks
 html_table = final_df.to_html(index=False, escape=False)
