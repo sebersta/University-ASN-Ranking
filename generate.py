@@ -14,11 +14,30 @@ world_universities_df.columns = ['country_code', 'university_name', 'website']
 # Drop rows where 'description' is NaN in the ASN data
 asn_df = asn_df.dropna(subset=['description'])
 
+adjustments = {
+    'Københavns Universitet': 'University of Copenhagen',
+    'Aarhus Universitet': 'Aarhus University',
+    'Syddansk Universitet': 'University of Southern Denmark',
+    'Danmarks Tekniske Universitet': 'Technical University of Denmark',
+    'Roskilde Universitet': 'Roskilde University',
+    'Aalborg Universitet': 'Aalborg University',
+    'University of California at Berkeley': 'University of California, Berkeley',
+}
+
 # Define a regex pattern to identify universities, institutes, and colleges
 university_pattern = re.compile(r'\b(University|Institute|College|Universitet|School)\b', re.IGNORECASE)
 
 # Filter rows where 'description' contains the terms for universities
 asn_universities_df = asn_df[asn_df['description'].str.contains(university_pattern)]
+
+def adjust(description):
+    for danish_name, english_name in adjustments.items():
+        if danish_name in description:
+            return description.replace(danish_name, english_name)
+    return description
+
+asn_universities_df['description'] = asn_universities_df['description'].apply(adjust)
+
 
 # Match by checking if the university name is part of the ASN description
 matched_universities_df = asn_universities_df[
