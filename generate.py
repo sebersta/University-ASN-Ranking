@@ -72,6 +72,6 @@ html_content = f"""
 """
 
 # Save the HTML content to a file
-with open("index", "w") as file:
+with open("index.html", "w") as file:
     file.write(html_content)
 
