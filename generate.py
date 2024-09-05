@@ -63,6 +63,7 @@ html_content = f"""
 </head>
 <body>
     {title}
+    <p>Autonomous Systems are like post offices; internet traffic goes from AS to AS until it reaches its destination. Universities with smaller Autonomous System Number (ASN) means they registered it eariler.</p>
     {html_table}
     {github_link}
     <p>Source: <a href="{asn_url}">ASN Data</a></p>
