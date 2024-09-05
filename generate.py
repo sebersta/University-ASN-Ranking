@@ -72,7 +72,6 @@ html_content = f"""
 """
 
 # Save the HTML content to a file
-with open("university_ranking", "w") as file:
+with open("index", "w") as file:
     file.write(html_content)
 
-print("HTML table with title and GitHub link created and saved as 'university_ranking_with_title.html'")
